@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Core.Entities.Customer>
+
+@{
+    ViewBag.Title = "Customer Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Customer List</h2>
+    <p>
+        @Html.ActionLink("Create New Customer", "Create", null, new { @class = "btn btn-prim  mb-3" })
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.Id</td>
+                        <td>@customer.Name</td>
+                        <td>@customer.Email</td>
+                        <td>@customer.Phone</td>
+                        <td>
+                            <div class="btn-group">
+                                @Html.ActionLink("Edit", "Edit", new { id = customer.Id }, new { @class = "btn btn-warning btn-sm " })
+                                @Html.ActionLink("Details", "Details", new { id = customer.Id }, new { @class = "btn btn-info btn-sm " })
+                                @Html.ActionLink("Delete", "Delete", new { id = customer.Id }, new { @class = "btn btn-danger btn-sm" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .btn-prim {
+        background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+        border: none;
+        color: white;
+    }
+</style>

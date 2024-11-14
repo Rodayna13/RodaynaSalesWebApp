@@ -1,0 +1,40 @@
+﻿@model Core.Entities.Invoice
+
+@{
+    ViewBag.Title = "Invoice Details";
+}
+<h2>Details</h2>
+
+<div class="form-horizontal">
+    <h4>Invoice</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2 fw-bold">@Html.DisplayNameFor(model => model.Id)</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Id)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2 fw-bold">@Html.DisplayNameFor(model => model.InvoiceDate)</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2 fw-bold">@Html.DisplayNameFor(model => model.CustomerName)</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.CustomerName)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2 fw-bold">@Html.DisplayNameFor(model => model.TotalAmount)</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.TotalAmount)
+        </div>
+    </div>
+</div>
+<p class="mt-4">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-warning" })
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-outline-danger" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-primary" })
+</p>

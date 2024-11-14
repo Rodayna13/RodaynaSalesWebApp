@@ -1,0 +1,73 @@
+﻿@model Core.Entities.Category
+
+@{
+    ViewBag.Title = "Edit Category";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+            <h2 class="text-center txt-prim font-weight-bold mb-4">Edit Category</h2>
+
+            <!-- Edit Form -->
+            @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.Id)
+
+                <!-- Category Name Input -->
+                <div class="form-group mb-3">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "font-weight-semibold txt-prim" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control rounded-pill" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Save and Cancel Buttons -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-outline-success btn-lg rounded-pill px-4 mr-2">
+                        Save
+                    </button>
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-outline-primary btn-lg rounded-pill px-4" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    /* Text Color */
+    .txt-prim {
+        color: #182848;
+    }
+    /* Button Styling */
+    .btn-outline-success {
+        color: #1b8c35;
+        border-color: #0b4719;
+        margin: 5px;
+    }
+        .btn-outline-success:hover {
+            background: #1b8c35;
+        }
+    .btn-outline-primary {
+        color: #182848;
+        border-color: #182848;
+        margin:5px;
+    }
+        .btn-outline-primary:hover {
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+        }
+    /* Card Styling */
+    .card {
+        border-radius: 1rem;
+    }
+    /* Form Control Styling */
+    .form-control {
+        border-radius: 1rem;
+    }
+    /* Typography */
+    .font-weight-semibold {
+        font-weight: 600;
+    }
+</style>

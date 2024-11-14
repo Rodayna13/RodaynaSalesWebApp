@@ -1,0 +1,148 @@
+﻿@model SalesWebApp.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+<div class="container">
+    <h1 id="title" class="text-center" style="color: #3A3B3C; font-weight: 600;">@ViewBag.Title</h1>
+    <h3 class="text-center text-muted">@ViewBag.Message</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg p-4 mt-5 rounded border-0">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "loginForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Username, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control border border-secondary" })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group position-relative mt-3">
+                        @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                        <div class="input-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control border border-secondary", id = "password-input" })
+                            <span class="input-group-text toggle-password bg-light" style="cursor: pointer;">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group text-center mt-4">
+                        <button type="submit" class="btn btn-prim  w-100 py-2" style="font-weight: bold; letter-spacing: 0.5px;">Login</button>
+                        <p class="mt-3 text-left">If you don't have account <a href="@Url.Action("Register", "Account")">Register here</a></p>
+
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger mt-3 text-center">@ViewBag.ErrorMessage</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Toggle password visibility
+            $('.toggle-password').click(function () {
+                var passwordField = $('#password-input');
+                var type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+                passwordField.attr('type', type);
+                $(this).find('i').toggleClass('fa-eye-slash fa-eye');
+            });
+
+            // Client-side form validation
+            $('#loginForm').validate({
+                rules: {
+                    Username: {
+                        required: true
+                    },
+                    Password: {
+                        required: true
+                    }
+                },
+                messages: {
+                    Username: {
+                        required: "Username is required."
+                    },
+                    Password: {
+                        required: "Password is required."
+                    }
+                },
+                errorElement: 'div',
+                errorPlacement: function (error, element) {
+                    error.addClass('text-danger');
+                    error.insertAfter(element);
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        width:100%;
+    }
+    .form-control {
+        width: 100%; /* Allow full width for larger screens */
+        max-width: 100%;
+    }
+    .card {
+        background-color: #ffffff;
+        width: 100%; /* Allow full width for larger screens */
+        max-width: 100%;
+        margin-bottom: 10%;
+    }
+
+    #title {
+        color: #0056b3;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top:10%;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .btn-prim  {
+        width: 100%;
+        max-width: 100%; /* Make the button a little wider */
+        padding: 12px; /* Increase button padding */
+        background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-prim :hover {
+            background-color: #004494;
+            border-color: #004494;
+        }
+
+    .input-group-text {
+        background-color: #e9ecef;
+        border-left: none;
+    }
+
+    .input-group .form-control {
+        border-right: none;
+ 
+    }
+
+    .text-danger {
+        font-size: 0.875rem;
+    }
+</style>

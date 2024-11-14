@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Radona Web Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+        /* Custom Navbar Styling */
+        .navbar-custom {
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            padding: 1rem;
+        }
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .nav-link {
+                color: #f8f9fa !important;
+                font-weight: 500;
+            }
+
+                .navbar-custom .nav-link:hover {
+                    color: #e9ecef !important;
+                    border-bottom: 2px solid #f8f9fa;
+                }
+
+        .navbar-toggler-icon {
+            color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            @Html.ActionLink("Radona Web App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container body-content">
+        @RenderBody()
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+        <hr />
+        <footer class="text-center py-3">
+            <p>&copy; @DateTime.Now.Year - Radona Web Application</p>
+        </footer>
+    </div>
+
+    <script>
+        var warningTimer;
+        var timeoutTimer;
+        var warningTime = 2 * 60 * 1000; // 2 minutes
+        var timeoutTime = 3 * 60 * 1000; // 3 minutes
+
+        function resetTimers() {
+            clearTimeout(warningTimer);
+            clearTimeout(timeoutTimer);
+            startTimers();
+        }
+
+        function startTimers() {
+            warningTimer = setTimeout(showWarning, warningTime);
+            timeoutTimer = setTimeout(logoutUser, timeoutTime);
+        }
+
+        function showWarning() {
+            if (confirm("Your session is about to expire. Do you want to stay signed in?")) {
+                resetTimers();
+            } else {
+                logoutUser();
+            }
+        }
+
+        function logoutUser() {
+            window.location.href = '@Url.Action("Logout", "Account")';
+        }
+
+        document.addEventListener('mousemove', resetTimers);
+        document.addEventListener('keypress', resetTimers);
+
+        startTimers();
+    </script>
+</body>
+</html>

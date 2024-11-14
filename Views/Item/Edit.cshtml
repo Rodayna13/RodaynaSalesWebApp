@@ -1,0 +1,52 @@
+﻿@model Core.Entities.Item
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 fw-bold" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 fw-bold" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Upload New Images", htmlAttributes: new { @class = "control-label col-md-2 fw-bold" })
+        <div class="col-md-10">
+            <input type="file" name="ImageFile" class="form-control" accept="image/*" multiple />
+            @Html.ValidationMessage("ImageFile", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, "Category", htmlAttributes: new { @class = "control-label col-md-2 fw-bold" })
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 mt-3">
+            <button type="submit" class="btn btn-outline-success mt-3">Save</button>
+            @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-outline-dark mt-3" })
+        </div>
+    </div>
+}

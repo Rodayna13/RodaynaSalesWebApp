@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+<main aria-labelledby="title" class="contact-page container py-5">
+    <div class="text-center mb-5">
+        <h2 id="title" class="display-4 font-weight-bold txt-prim">@ViewBag.Title</h2>
+        <p class="lead text-muted mt-3">We’d love to hear from you! Feel free to reach out with any inquiries.</p>
+        <hr class="w-50 mx-auto border-primary">
+    </div>
+
+    <div class="contact-info row justify-content-center mb-5">
+        <div class="col-md-5 text-center mb-4">
+            <h3 class=" font-weight-bold" id="title">Contact Information</h3>
+            <p class="text-muted">
+                <strong>Radona Ecommerce</strong><br />
+                Open All Week<br />
+                <abbr title="Phone">Phone: </abbr> 01010812096
+            </p>
+            <p class="text-muted">
+                <strong>Support Email:</strong> <a href="mailto:rodayna3010@gmail.com" class="txt-prim">rodayna3010@gmail.com</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="contact-form row justify-content-center">
+        <div class="col-md-8">
+            <h3 id="title" class=" font-weight-bold text-center mb-4">Send Us a Message</h3>
+            <form>
+                <div class="form-group mb-3">
+                    <label for="name" class="text-muted font-weight-bold mb-2">Your Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                </div>
+
+                <div class="form-group  mb-3  ">
+                    <label for="email" class="text-muted font-weight-bold mb-2">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group  mb-3">
+                    <label for="message" class="text-muted font-weight-bold mb-2">Message</label>
+                    <textarea id="message" class="form-control" rows="5" placeholder="Enter your message here"></textarea>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn custom-btn px-5 py-2">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<style>
+    body {
+        background-color: #f9f9fb;
+        font-family: Arial, sans-serif;
+    }
+
+    .contact-page {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 900px;
+        margin: auto;
+       
+    }
+
+
+    #title {
+        color: #182848;
+    }
+
+    .font-weight-bold {
+        font-weight: 700;
+    }
+    .text-seco {
+        color: #15181c;
+    }
+
+    .txt-prim {
+        color: #182848;
+    }
+
+    .contact-info, .contact-form {
+        margin-top: 40px;
+      
+    }
+    .contact-info
+    .contact-form {
+        width: 80%;
+        max-width: 80%;
+        text-align:center;
+    }
+        .form-control {
+            border-radius: 5px;
+            width:100%;
+            max-width:100%;
+        }
+
+    hr {
+        height: 3px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+
+    button {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .custom-btn {
+        width: 100%;
+        max-width: 100%; /* Make the button a little wider */
+        padding: 12px; /* Increase button padding */
+        background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>

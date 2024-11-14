@@ -1,0 +1,78 @@
+﻿@model Core.Entities.Category
+
+@{
+    ViewBag.Title = "Create Category";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+            <h2 class="text-center txt-prim font-weight-bold mb-4">Create Category</h2>
+
+            @using (Html.BeginForm("UploadExcel", "Category", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form " }))
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Category Name Input -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "font-weight-semibold" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control rounded-pill" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Excel File Upload Input -->
+                <div class="form-group">
+                    @Html.Label("Upload Excel File", htmlAttributes: new { @class = "font-weight-semibold" })
+                    <input type="file" name="excelFile" class="form-control-file" accept=".xlsx, .xls" />
+                    @Html.ValidationMessage("excelFile", "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Submit and Back Buttons -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-prim  btn-lg rounded-pill px-4">
+                        <i class="fas fa-upload mr-2"></i> Upload
+                    </button>
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-lg rounded-pill px-4" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS for Styling -->
+<style>
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        border-radius: 1rem;
+    }
+    .txt-prim {
+        color: #182848;
+    }
+    .card {
+        border-radius: 1rem;
+    }
+
+    .btn-lg {
+        font-size: 1.2rem;
+    }
+
+    .btn-outline-dark:hover,
+    .btn-prim :hover {
+        background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+    }
+
+    .btn i {
+        font-size: 1.2rem;
+    }
+
+    .alert-dismissible {
+        padding-right: 2.5rem;
+    }
+
+    .font-weight-semibold {
+        font-weight: 600;
+    }
+</style>
